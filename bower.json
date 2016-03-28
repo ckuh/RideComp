@@ -1,0 +1,30 @@
+{
+  "name": "ridecomp",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Chris Kuh <kuh_chris@yahoo.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ckuh/RideComp",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.3",
+    "angular-oauth2": "^4.0.0",
+    "angular-material": "^1.0.6",
+    "angularjs-geolocation": "^0.1.1",
+    "angular-ui-router": "^0.2.18",
+    "angular-bootstrap": "^1.2.5",
+    "angular-spinner": "^0.8.1",
+    "ngstorage": "^0.3.10",
+    "bootstrap": "^3.3.6"
+  }
+}

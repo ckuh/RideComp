@@ -1,0 +1,27 @@
+{
+  "name": "ridecomp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "bower cache clean && bower install",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckuh/RideComp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ckuh/RideComp/issues"
+  },
+  "homepage": "https://github.com/ckuh/RideComp#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.15.0",
+    "bower": "^1.7.7",
+    "express": "^4.13.4",
+    "jwt-simple": "^0.5.0"
+  }
+}
