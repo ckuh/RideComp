@@ -21,6 +21,15 @@ angular.module('App', [
           }
         }
       })
+      .state('comp', {
+        url: '/comp',
+        authenticate: false,
+        views: {
+          '': {
+            templateUrl: 'pages/comp/comp.html'
+          }
+        }
+      })
 
     $urlRouterProvider
       .otherwise('/');
