@@ -1,3 +1,32 @@
 <div class='controller' ng-controller='HomeController as homeController' ng-cloak>
+  <div class='container vertCenter' layout-padding>
 
+    <form name='saveUserLoc' class='md-primary' ng-submit='saveUserLoc.$valid && homeController.saveUserLoc()'>
+
+      <md-input-container class='md-block'>
+        <label class='md-display-1'>Choose starting point...</label>
+        <input name='curLoc' type='text' ng-model='homeController.user.curLoc' required g-places-autocomplete force-selection='true' autocomplete='off'>
+        <div ng-messages="saveUserLoc.curLoc.$error" ng-show="saveUserLoc.curLoc.$touched">
+          <div ng-message="required">This is required!</div>
+        </div>
+      </md-input-container>
+
+      <br/>
+
+      <md-input-container class='md-block'>
+        <label class='md-display-1'>Choose destination...</label>
+        <input name='endLoc' type='text' ng-model='homeController.user.endLoc' required g-places-autocomplete force-selection='true' autocomplete='off'>
+        <div ng-messages="saveUserLoc.endLoc.$error" ng-show="saveUserLoc.endLoc.$touched">
+          <div ng-message="required">This is required!</div>
+        </div>
+      </md-input-container>
+
+      <div>
+        <md-button type="submit" class="md-primary md-raised" ng-disabled="saveUserLoc.$invalid">SUBMIT</md-button>
+        <md-button class='md-primary md-raised' ng-click="homeController.reset()">RESET</md-button>
+      </div>
+
+    </form>
+
+  </div>
 </div>

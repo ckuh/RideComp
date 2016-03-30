@@ -7,6 +7,7 @@ angular.module('App', [
     'ngAria',
     'ngMaterial',
     'ngMessages',
+    'google.places',
     'homeFactory'
   ])
   .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, usSpinnerConfigProvider) {
