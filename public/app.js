@@ -8,7 +8,8 @@ angular.module('App', [
     'ngMaterial',
     'ngMessages',
     'google.places',
-    'homeFactory'
+    'homeFactory',
+    'compFactory'
   ])
   .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, usSpinnerConfigProvider) {
     $stateProvider
