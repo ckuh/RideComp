@@ -46,12 +46,10 @@ angular.module('compFactory', [])
         .catch(getLyftTokenFailed);
 
       function getLyftTokenComplete(response) {
-        debugger;
         return response.data.results;
       }
 
       function getLyftTokenFailed(error) {
-        debugger;
         console.error('XHR Failed for getLyftPrice.' + error.data.error);
       }
     }

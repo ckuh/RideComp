@@ -8,6 +8,7 @@ angular.module('App', [
     'ngMaterial',
     'ngMessages',
     'google.places',
+    'geolocation',
     'homeFactory',
     'compFactory'
   ])
