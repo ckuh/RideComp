@@ -17,7 +17,7 @@ angular.module('homeFactory', [])
        }
 
        function getCurLocStringFailed(error) {
-           logger.error('XHR Failed for getCurLocString.' + error.data);
+           console.error('XHR Failed for getCurLocString.' + error.data);
        }
     }
   })
