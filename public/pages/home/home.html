@@ -30,19 +30,19 @@
     </form>
 
     <div class='curLoc' layout-padding>
-      <md-button class='md-fab md-primary' aria-label='Eat cake' ng-click="homeController.getCurLoc()">
+      <md-button class='md-fab md-primary' ng-click="homeController.getCurLoc()">
         <i class="material-icons">location_on</i>
       </md-button>
     </div>
 
     <div class='swap' layout-padding>
-      <md-button class='md-fab md-primary' aria-label='Eat cake' ng-click="homeController.swap()">
+      <md-button class='md-fab md-primary' ng-click="homeController.swap()">
         <i class="material-icons">swap_vert</i>
       </md-button>
     </div>
 
     <div class='getLocSpinner' ng-show='homeController.spinner'>
-      <span us-spinner spinner-theme="bigBlue" ng-show='homeController.spinner'></span>
+      <span us-spinner spinner-theme="smallBlue" ng-show='homeController.spinner'></span>
     </div>
 
   </div>

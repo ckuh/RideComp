@@ -5,6 +5,7 @@ angular.module('App')
     vm.lyftPrice = [];
     vm.lyftToken = {};
     vm.dataLoaded = false;
+    vm.showSpinner = true;
     vm.control = {};
     vm.map = {
       center: {
@@ -65,6 +66,7 @@ angular.module('App')
 
                   vm.lyftPrice = data.cost_estimates;
                   console.log('getLyftPrice: ', vm.lyftPrice);
+                  vm.showSpinner = false;
                   vm.dataLoaded = true;
                 });
 
@@ -73,7 +75,9 @@ angular.module('App')
         });
     }
 
-
+    vm.home = function() {
+      $state.go('home');
+    }
 
     vm.init();
   });

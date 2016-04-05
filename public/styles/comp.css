@@ -5,3 +5,10 @@
 .angular-google-map-container {
   height: 400px;
 }
+
+.home {
+  padding: 0 !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

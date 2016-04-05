@@ -1,5 +1,15 @@
 <div class='controller' ng-controller='CompController as compController'>
 
+  <div class='home' layout-padding>
+    <md-button class='md-fab md-primary md-mini' ng-click="compController.home()">
+      <i class="material-icons">settings_backup_restore</i>
+    </md-button>
+  </div>
+
+  <div class='vertCenter'ng-show='compController.showSpinner'>
+    <span us-spinner spinner-theme='bigBlue' ></span>
+  </div>
+
   <div class='container map' ng-if='compController.dataLoaded'>
     <ui-gmap-google-map control='compController.control' center='compController.map.center' zoom='compController.map.zoom' options='compController.options'></ui-gmap-google-map>
   </div>

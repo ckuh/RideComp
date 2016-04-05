@@ -26,7 +26,7 @@ angular.module('App', [
       })
       .state('comp', {
         url: '/comp',
-        authenticate: false,
+        authenticate: true,
         views: {
           '': {
             templateUrl: 'pages/comp/comp.html'
@@ -37,7 +37,7 @@ angular.module('App', [
     $urlRouterProvider
       .otherwise('/');
 
-    usSpinnerConfigProvider.setTheme('bigBlue', {
+    usSpinnerConfigProvider.setTheme('smallBlue', {
       color: '#229ee4',
       lines: 17,
       length: 0,
@@ -51,10 +51,19 @@ angular.module('App', [
       trail: 100
     });
 
-    // uiGmapGoogleMapApiProvider.configure({
-    //     key: 'AIzaSyCCbjiBoKsG7rC0VPJ5cR0rkjJNrx1wtpA',
-    //     libraries: 'weather,geometry,visualization'
-    // });
+    usSpinnerConfigProvider.setTheme('bigBlue', {
+      color: '#229ee4',
+      lines: 20,
+      length: 15,
+      width: 10,
+      radius: 50,
+      scale: 0.50,
+      corners: 1.0,
+      opacity: 0.10,
+      direction: 1,
+      speed: 0.7,
+      trail: 100
+    });
   })
   .run(function($rootScope, $state, $localStorage) {
     $rootScope.$on('$stateChangeStart', function(e, to) {
@@ -63,7 +72,7 @@ angular.module('App', [
       };
       e.preventDefault();
 
-      if ($localStorage) {
+      if (Object.keys($localStorage.user).length !== 0) {
         to.authenticate = false;
         $state.go(to.name);
       } else {
