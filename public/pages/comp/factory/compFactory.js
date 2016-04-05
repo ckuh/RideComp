@@ -6,12 +6,12 @@ angular.module('compFactory', [])
       getUberPrice: getUberPrice
     }
     return service;
-
     function getLyftPrice(token) {
       var auth = token.token_type + ' ' + token.access_token;
+      var url = 'https://api.lyft.com/v1/cost?start_lat='+$localStorage.user.curLat+'&start_lng='+$localStorage.user.curLng+'&end_lat='+$localStorage.user.endLat+'&end_lng='+$localStorage.user.endLng;
       var req = {
         method: 'GET',
-        url: 'https://api.lyft.com/v1/ridetypes?lat=37.7833&lng=-122.4167',
+        url: url,
         headers: {
           'Authorization': auth
         }
@@ -39,7 +39,6 @@ angular.module('compFactory', [])
         .catch(getLyftTokenFailed);
 
       function getLyftTokenComplete(response) {
-        console.log(response)
         return response.data.token;
       }
 
