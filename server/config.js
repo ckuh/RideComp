@@ -17,6 +17,16 @@ var uber = new Uber({
 //     });
 //   });
 
+// Get the access token object.
+var credentials = {
+  clientID: 'IeoElebZ35AY',
+  clientSecret: 'uX-gqMuGRfK5xqpdOUvE-mjVheM1C85N',
+  site: 'https://api.lyft.com',
+  tokenPath: '/oauth/token',
+  authorizationPath: '/oauth/token'
+};
+
 module.exports = {
-  uber: uber
+  uber: uber,
+  credentials: credentials
 };

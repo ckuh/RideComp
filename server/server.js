@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var routeUber = require('./routes/routeUber.js')
+var routeUber = require('./routes/routeUber.js');
+var routeLyft = require('./routes/routeLyft.js');
 
 var http = require('http');
 var app = express();
@@ -17,7 +18,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/api', routeUber)
+app.use('/api', routeUber);
+app.use('/api', routeLyft);
 app.use(express.static('./public'));
 
 server.listen(PORT, function() {

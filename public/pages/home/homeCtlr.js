@@ -44,6 +44,16 @@ angular.module('App')
           vm.user.curLoc = data[0].formatted_address;
         })
       });
+      // if(navigator.geolocation){
+      //   navigator.geolocation.getCurrentPosition(function(position){
+      //     debugger;
+      //     homeFactory.getCurLocString(data.coords.latitude,data.coords.longitude)
+      //     .then(function(data){
+      //       vm.spinner = false;
+      //       vm.user.curLoc = data[0].formatted_address;
+      //     })
+      //   })
+      // }
     }
 
     vm.reset = function(){
