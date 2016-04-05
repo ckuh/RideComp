@@ -7,6 +7,7 @@ angular.module('App')
     vm.init = function(){
       compFactory.getLyftToken()
       .then(function(data){
+        console.log(data);
         vm.lyftToken = data;
 
         compFactory.getLyftPrice(vm.lyftToken)

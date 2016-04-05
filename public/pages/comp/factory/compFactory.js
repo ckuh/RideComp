@@ -40,7 +40,7 @@ angular.module('compFactory', [])
 
       function getLyftTokenComplete(response) {
         console.log(response)
-        return response.data;
+        return response.data.token;
       }
 
       function getLyftTokenFailed(error) {
