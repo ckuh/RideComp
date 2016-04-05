@@ -9,10 +9,11 @@ angular.module('App', [
     'ngMessages',
     'google.places',
     'geolocation',
+    'uiGmapgoogle-maps',
     'homeFactory',
     'compFactory'
   ])
-  .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, usSpinnerConfigProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, usSpinnerConfigProvider, uiGmapGoogleMapApiProvider) {
     $stateProvider
       .state('home', {
         url: '/',
@@ -49,6 +50,11 @@ angular.module('App', [
       speed: 0.7,
       trail: 100
     });
+
+    // uiGmapGoogleMapApiProvider.configure({
+    //     key: 'AIzaSyCCbjiBoKsG7rC0VPJ5cR0rkjJNrx1wtpA',
+    //     libraries: 'weather,geometry,visualization'
+    // });
   })
   .run(function($rootScope, $state, $localStorage) {
     $rootScope.$on('$stateChangeStart', function(e, to) {

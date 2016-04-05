@@ -26,6 +26,7 @@
     "angular-spinner": "^0.8.1",
     "ngstorage": "^0.3.10",
     "bootstrap": "^3.3.6",
-    "angular-google-places-autocomplete": "^0.2.7"
+    "angular-google-places-autocomplete": "^0.2.7",
+    "angular-google-maps": "^2.3.2"
   }
 }
