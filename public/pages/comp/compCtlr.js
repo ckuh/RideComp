@@ -4,29 +4,32 @@ angular.module('App')
     vm.uberPrice = {};
     vm.lyftPrice = [];
     vm.lyftToken = {};
+    vm.dataLoaded = false;
 
     vm.init = function(){
-      compFactory.getLyftToken()
+      compFactory.getUberPrice()
       .then(function(data){
-        vm.lyftToken = data;
+        console.log('getUberPrice: ', data.prices);
+        vm.uberPrice = data.prices;
 
-        compFactory.getLyftPrice(vm.lyftToken)
+        compFactory.getLyftToken()
         .then(function(data){
+          vm.lyftToken = data;
 
-          angular.forEach(data.cost_estimates, function(value) {
-            value.estimate = '$' + (value.estimated_cost_cents_min/100) + '-' + (value.estimated_cost_cents_max/100);
+          compFactory.getLyftPrice(vm.lyftToken)
+          .then(function(data){
+
+            angular.forEach(data.cost_estimates, function(value) {
+              value.estimate = '$' + (value.estimated_cost_cents_min/100) + '-' + (value.estimated_cost_cents_max/100);
+            });
+
+            vm.lyftPrice = data.cost_estimates;
+            console.log('getLyftPrice: ', vm.lyftPrice);
+            vm.dataLoaded = true;
           });
 
-          vm.lyftPrice = data.cost_estimates;
-          console.log('getLyftPrice: ', vm.lyftPrice);
-        });
 
-        compFactory.getUberPrice()
-        .then(function(data){
-          console.log('getUberPrice: ', data.prices);
-          vm.uberPrice = data.prices;
         });
-
       });
     }
 

@@ -1,9 +1,10 @@
 <div class='controller' ng-controller='CompController as compController'>
-  <div class="container-fluid">
-    <div class="container" ng-repeat='ride in compController.lyftPrice'>
+  <div class='container-fluid' ng-show='compController.dataLoaded'>
+    <div class='container' ng-repeat='ride in compController.uberPrice'>
       {{ride.display_name}}: {{ride.estimate}}
     </div>
-    <div class="container" ng-repeat='ride in compController.uberPrice'>
+
+    <div class='container' ng-repeat='ride in compController.lyftPrice'>
       {{ride.display_name}}: {{ride.estimate}}
     </div>
   </div>
