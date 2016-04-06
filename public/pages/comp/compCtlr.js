@@ -36,7 +36,8 @@ angular.module('App')
           lat: $localStorage.user.endLat,
           lng: $localStorage.user.endLng
         },
-        travelMode: google.maps.TravelMode.DRIVING
+        travelMode: google.maps.TravelMode.DRIVING,
+        avoidTolls: true
       }
 
       directionsService.route(options, function(response, status) {
@@ -62,16 +63,17 @@ angular.module('App')
                 .then(function(data) {
                   var rideType = [];
                   var price = [];
-                  angular.forEach(vm.uberPrice, function(value) {
-                    rideType.push(value.display_name);
-                    price.push([value.low_estimate, value.high_estimate]);
-                  });
-
                   angular.forEach(data.cost_estimates, function(value) {
                     value.estimate = '$' + (value.estimated_cost_cents_min / 100) + '-' + (value.estimated_cost_cents_max / 100);
                     rideType.push(value.display_name);
                     price.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
                   });
+
+                  angular.forEach(vm.uberPrice, function(value) {
+                    rideType.push(value.display_name);
+                    price.push([value.low_estimate, value.high_estimate]);
+                  });
+
 
                   vm.lyftPrice = data.cost_estimates;
                   // console.log('getLyftPrice: ', vm.lyftPrice);
