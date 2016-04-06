@@ -51,7 +51,7 @@ angular.module('App')
     vm.init = function() {
       compFactory.getUberPrice()
         .then(function(data) {
-          console.log('getUberPrice: ', data.prices);
+          // console.log('getUberPrice: ', data.prices);
           vm.uberPrice = data.prices;
 
           compFactory.getLyftToken()
@@ -74,7 +74,7 @@ angular.module('App')
                   });
 
                   vm.lyftPrice = data.cost_estimates;
-                  console.log('getLyftPrice: ', vm.lyftPrice);
+                  // console.log('getLyftPrice: ', vm.lyftPrice);
 
                   vm.setGraph(rideType, price);
                 });
