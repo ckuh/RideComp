@@ -4,7 +4,8 @@ angular.module('App')
     vm.user = {};
     vm.spinner = false;
     $localStorage.user = {};
-
+    $state.get('comp').authenticate = true;
+    
     vm.saveUserLoc = function() {
       if (vm.user.curLoc.geometry) {
         $localStorage.user.curLat = vm.user.curLoc.geometry.location.lat();
