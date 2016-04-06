@@ -62,16 +62,24 @@ angular.module('App')
               compFactory.getLyftPrice(vm.lyftToken)
                 .then(function(data) {
                   var rideType = [];
-                  var price = [];
+                  var price = {
+                    uberPrice: [],
+                    lyftPrice: []
+                  }
+
                   angular.forEach(data.cost_estimates, function(value) {
                     value.estimate = '$' + (value.estimated_cost_cents_min / 100) + '-' + (value.estimated_cost_cents_max / 100);
                     rideType.push(value.display_name);
-                    price.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
+                    price.lyftPrice.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
                   });
+
+                  angular.forEach(price.lyftPrice, function(value) {
+                    price.uberPrice.unshift([null,null]);
+                  })
 
                   angular.forEach(vm.uberPrice, function(value) {
                     rideType.push(value.display_name);
-                    price.push([value.low_estimate, value.high_estimate]);
+                    price.uberPrice.push([value.low_estimate, value.high_estimate]);
                   });
 
 
@@ -122,7 +130,9 @@ angular.module('App')
           }
         },
         series: [{
-          data: price
+          data: price.lyftPrice
+        },{
+          data: price.uberPrice
         }],
         title: {
           text: 'Ride Price Estimates'
