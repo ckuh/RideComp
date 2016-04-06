@@ -1,5 +1,5 @@
 angular.module('App')
-  .controller('CompController', function($location, $scope, $state, $localStorage, $interval, compFactory, uiGmapIsReady, highchartsNG) {
+  .controller('CompController', function($location, $scope, $state, $localStorage, $interval, $timeout, compFactory, uiGmapIsReady, highchartsNG) {
     var vm = this;
     vm.uberPrice = {};
     vm.lyftPrice = [];
@@ -74,7 +74,7 @@ angular.module('App')
                   });
 
                   angular.forEach(price.lyftPrice, function(value) {
-                    price.uberPrice.unshift([null,null]);
+                    price.uberPrice.unshift([null, null]);
                   })
 
                   angular.forEach(vm.uberPrice, function(value) {
@@ -129,16 +129,23 @@ angular.module('App')
             text: 'Price ($)'
           }
         },
+        credits: {
+          enabled: true,
+          text: 'uber.com/lyft.com'
+        },
         series: [{
           data: price.lyftPrice
-        },{
+        }, {
           data: price.uberPrice
         }],
         title: {
           text: 'Ride Price Estimates'
         },
-
-        loading: false
+        func: function(chart) {
+          $timeout(function() {
+            chart.reflow();
+          }, 0);
+        }
       };
       vm.dataLoaded = true;
       vm.showSpinner = false;

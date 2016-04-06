@@ -10,11 +10,11 @@
     <span us-spinner spinner-theme='bigBlue'></span>
   </div>
 
-  <div class='container map' ng-if='compController.dataLoaded'>
+  <div class='container topBotPad' ng-if='compController.dataLoaded'>
     <ui-gmap-google-map control='compController.control' center='compController.map.center' zoom='compController.map.zoom' options='compController.options'></ui-gmap-google-map>
   </div>
 
-  <div class='container' id='graph' ng-if='compController.dataLoaded'>
+  <div class='container topBotPad' ng-if='compController.dataLoaded'>
     <highchart config='compController.chartOptions'></highchart>
   </div>
 
