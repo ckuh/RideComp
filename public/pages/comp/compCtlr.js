@@ -134,9 +134,13 @@ angular.module('App')
           text: 'uber.com/lyft.com'
         },
         series: [{
-          data: price.lyftPrice
+          name: 'lyft',
+          data: price.lyftPrice,
+          color: '#FF00BF'
         }, {
-          data: price.uberPrice
+          name: 'uber',
+          data: price.uberPrice,
+          color: '#161629'
         }],
         title: {
           text: 'Ride Price Estimates'
