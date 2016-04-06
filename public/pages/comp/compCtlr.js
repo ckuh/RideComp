@@ -1,5 +1,5 @@
 angular.module('App')
-  .controller('CompController', function($location, $scope, $state, $localStorage, $interval, compFactory, uiGmapIsReady) {
+  .controller('CompController', function($location, $scope, $state, $localStorage, $interval, compFactory, uiGmapIsReady, highchartsNG) {
     var vm = this;
     vm.uberPrice = {};
     vm.lyftPrice = [];
@@ -7,10 +7,11 @@ angular.module('App')
     vm.dataLoaded = false;
     vm.showSpinner = true;
     vm.control = {};
+    vm.chartOptions = {};
     vm.map = {
       center: {
-        latitude: ($localStorage.user.curLat + $localStorage.user.endLat)/2,
-        longitude: ($localStorage.user.curLng + $localStorage.user.endLng)/2
+        latitude: ($localStorage.user.curLat + $localStorage.user.endLat) / 2,
+        longitude: ($localStorage.user.curLng + $localStorage.user.endLng) / 2
       },
       zoom: 13,
       refresh: true
@@ -59,20 +60,76 @@ angular.module('App')
 
               compFactory.getLyftPrice(vm.lyftToken)
                 .then(function(data) {
+                  var rideType = [];
+                  var price = [];
+                  angular.forEach(vm.uberPrice, function(value) {
+                    rideType.push(value.display_name);
+                    price.push([value.low_estimate, value.high_estimate]);
+                  });
 
                   angular.forEach(data.cost_estimates, function(value) {
                     value.estimate = '$' + (value.estimated_cost_cents_min / 100) + '-' + (value.estimated_cost_cents_max / 100);
+                    rideType.push(value.display_name);
+                    price.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
                   });
 
                   vm.lyftPrice = data.cost_estimates;
                   console.log('getLyftPrice: ', vm.lyftPrice);
-                  vm.showSpinner = false;
-                  vm.dataLoaded = true;
+
+                  vm.setGraph(rideType, price);
                 });
-
-
             });
         });
+    }
+
+    vm.setGraph = function(rideType, price) {
+      vm.chartOptions = {
+        options: {
+          legend: {
+            enabled: false
+          },
+          chart: {
+            type: 'columnrange',
+            inverted: true
+          },
+          tooltip: {
+            formatter: function() {
+              return '<b>' + this.x + '</b> available for $<b>' + this.point.low + '</b>-<b>' + this.point.high + '</b>';
+            }
+          },
+          plotOptions: {
+            columnrange: {
+              dataLabels: {
+                enabled: true,
+                formatter: function() {
+                  return '$' + this.y;
+                }
+              }
+            }
+          }
+        },
+        xAxis: {
+          categories: rideType,
+          title: {
+            text: 'Ride Type'
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Price ($)'
+          }
+        },
+        series: [{
+          data: price
+        }],
+        title: {
+          text: 'Ride Price Estimates'
+        },
+
+        loading: false
+      };
+      vm.dataLoaded = true;
+      vm.showSpinner = false;
     }
 
     vm.home = function() {

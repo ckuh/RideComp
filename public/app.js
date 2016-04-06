@@ -11,7 +11,9 @@ angular.module('App', [
     'geolocation',
     'uiGmapgoogle-maps',
     'homeFactory',
-    'compFactory'
+    'compFactory',
+    'ngSanitize',
+    'highcharts-ng'
   ])
   .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, usSpinnerConfigProvider, uiGmapGoogleMapApiProvider) {
     $stateProvider
