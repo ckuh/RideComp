@@ -8,6 +8,7 @@ angular.module('App')
     vm.showSpinner = true;
     vm.control = {};
     vm.chartOptions = {};
+    vm.chartOptionsStorage = {};
     vm.map = {
       center: {
         latitude: ($localStorage.user.curLat + $localStorage.user.endLat) / 2,
@@ -17,6 +18,7 @@ angular.module('App')
       refresh: true
     };
     vm.options = {
+      mapTypeControl: false,
       scrollwheel: false,
       disableDoubleClickZoom: true,
       streetViewControl: false,
@@ -50,6 +52,32 @@ angular.module('App')
     });
 
     vm.init = function() {
+      vm.chartOptionsStorage.all = {
+        rideType: [],
+        price: {
+          uberPrice: [],
+          lyftPrice: [],
+          lyftLinePrice: []
+        },
+        series: []
+      }
+      vm.chartOptionsStorage.small = {
+        categories: [],
+        lyft: {
+          series: {
+            data: [],
+            name: 'lyft',
+            color: '#FF00BF'
+          }
+        },
+        uber: {
+          series: {
+            data: [[null,null]],
+            name: 'uber',
+            color: '#161629'
+          }
+        }
+      }
       compFactory.getUberPrice()
         .then(function(data) {
           // console.log('getUberPrice: ', data.prices);
@@ -62,43 +90,45 @@ angular.module('App')
               compFactory.getLyftPrice(vm.lyftToken)
                 .then(function(data) {
                   var rideType = [];
-                  var price = {
-                    uberPrice: [],
-                    lyftPrice: [],
-                    lyftLinePrice: []
-                  }
-
                   angular.forEach(data.cost_estimates, function(value) {
                     value.estimate = '$' + (value.estimated_cost_cents_min / 100) + '-' + (value.estimated_cost_cents_max / 100);
-                    rideType.push(value.display_name);
+                    vm.chartOptionsStorage.all.rideType.push(value.display_name);
                     if (value.ride_type === 'lyft_line') {
-                      price.lyftLinePrice.push([(value.estimated_cost_cents_min / 100), null]);
-                      price.lyftPrice.push([null, null]);
+                      vm.chartOptionsStorage.all.price.lyftLinePrice.push([(value.estimated_cost_cents_min / 100), null]);
+                      vm.chartOptionsStorage.all.price.lyftPrice.push([null, null]);
                     } else {
-                      price.lyftPrice.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
+                      vm.chartOptionsStorage.all.price.lyftPrice.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
+                    }
+                    if (value.ride_type === 'lyft') {
+                      vm.chartOptionsStorage.small.categories.push(value.display_name)
+                      vm.chartOptionsStorage.small.lyft.series.data.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
                     }
                   });
 
-                  angular.forEach(price.lyftPrice, function(value) {
-                    price.uberPrice.unshift([null, null]);
+                  angular.forEach(vm.chartOptionsStorage.all.price.lyftPrice, function(value) {
+                    vm.chartOptionsStorage.all.price.uberPrice.unshift([null, null]);
                   })
 
                   angular.forEach(vm.uberPrice, function(value) {
-                    rideType.push(value.display_name);
-                    price.uberPrice.push([value.low_estimate, value.high_estimate]);
+                    vm.chartOptionsStorage.all.rideType.push(value.display_name);
+                    vm.chartOptionsStorage.all.price.uberPrice.push([value.low_estimate, value.high_estimate]);
+                    if (value.display_name === 'uberX') {
+                      vm.chartOptionsStorage.small.categories.push(value.display_name);
+                      vm.chartOptionsStorage.small.uber.series.data.push([value.low_estimate, value.high_estimate]);
+                    }
                   });
 
 
                   vm.lyftPrice = data.cost_estimates;
                   // console.log('getLyftPrice: ', vm.lyftPrice);
 
-                  vm.setGraph(rideType, price);
+                  vm.setGraph();
                 });
             });
         });
     }
 
-    vm.setGraph = function(rideType, price) {
+    vm.setGraph = function() {
       vm.chartOptions = {
         options: {
           legend: {
@@ -125,7 +155,7 @@ angular.module('App')
           }
         },
         xAxis: {
-          categories: rideType,
+          categories: vm.chartOptionsStorage.all.rideType,
           title: {
             text: 'Ride Type'
           }
@@ -141,15 +171,15 @@ angular.module('App')
         },
         series: [{
           name: 'lyft',
-          data: price.lyftLinePrice,
+          data: vm.chartOptionsStorage.all.price.lyftLinePrice,
           color: 'rgba(0,0,0,0)'
         }, {
           name: 'lyft',
-          data: price.lyftPrice,
+          data: vm.chartOptionsStorage.all.price.lyftPrice,
           color: '#FF00BF'
         }, {
           name: 'uber',
-          data: price.uberPrice,
+          data: vm.chartOptionsStorage.all.price.uberPrice,
           color: '#161629'
         }],
         title: {
@@ -161,6 +191,7 @@ angular.module('App')
           }, 0);
         }
       };
+      vm.chartOptionsStorage.all.series = vm.chartOptions.series;
       vm.dataLoaded = true;
       vm.showSpinner = false;
     }
@@ -169,5 +200,14 @@ angular.module('App')
       $state.go('home');
     }
 
+    vm.lyftUberX = function() {
+      vm.chartOptions.xAxis.categories = vm.chartOptionsStorage.small.categories;
+      vm.chartOptions.series = [vm.chartOptionsStorage.small.lyft.series, vm.chartOptionsStorage.small.uber.series];
+    }
+
+    vm.allGraph = function() {
+      vm.chartOptions.xAxis.categories = vm.chartOptionsStorage.all.rideType;
+      vm.chartOptions.series = vm.chartOptionsStorage.all.series;
+    }
     vm.init();
   });

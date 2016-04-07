@@ -4,14 +4,12 @@
   right: 0;
   transform: translate(80%, -50%);
 }
-
 .curLoc {
   position: absolute;
   top: 15%;
   right: 0;
   transform: translate(80%, -50%);
 }
-
 .getLocSpinner {
   position: absolute;
   top: 15%;

@@ -1,14 +1,29 @@
 .topBotPad {
-  padding-top: 15px;
   padding-bottom: 15px;
 }
 .angular-google-map-container {
   height: 400px;
 }
-
 .home {
   padding: 0 !important;
   position: absolute;
   top: 0;
   left: 0;
+}
+.selectGraph {
+  position: absolute;
+  padding: 0 !important;
+  z-index: 1;
+  padding: 0;
+}
+.graphButton{
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.graphButton:not([disabled]):hover {
+  background-color: rgba(0, 0, 0, 0);
+}
+.graphButton:not([disabled]):md-focused {
+  background-color: pink !important;
 }

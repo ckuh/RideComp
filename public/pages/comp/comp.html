@@ -3,6 +3,7 @@
   <div class='home' layout-padding>
     <md-button class='md-fab md-primary md-mini' ng-click="compController.home()">
       <i class="material-icons">settings_backup_restore</i>
+      <md-tooltip md-direction='right'>Get new estimate</md-tooltip>
     </md-button>
   </div>
 
@@ -10,11 +11,15 @@
     <span us-spinner spinner-theme='bigBlue'></span>
   </div>
 
-  <div class='container topBotPad' ng-if='compController.dataLoaded'>
+  <div class=' topBotPad' ng-if='compController.dataLoaded'>
     <ui-gmap-google-map control='compController.control' center='compController.map.center' zoom='compController.map.zoom' options='compController.options'></ui-gmap-google-map>
   </div>
 
-  <div class='container topBotPad' ng-if='compController.dataLoaded'>
+  <div class=' topBotPad' ng-if='compController.dataLoaded'>
+    <div class='selectGraph' layout-padding>
+      <md-button md-no-ink class='graphButton' ng-click='compController.lyftUberX()'>Single</md-button>
+      <md-button md-no-ink class='graphButton' ng-click='compController.allGraph()'>All</md-button>
+    </div>
     <highchart config='compController.chartOptions'></highchart>
   </div>
 
