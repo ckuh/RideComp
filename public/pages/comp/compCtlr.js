@@ -18,6 +18,7 @@ angular.module('App')
       refresh: true
     };
     vm.options = {
+      draggable: false,
       mapTypeControl: false,
       scrollwheel: false,
       disableDoubleClickZoom: true,
