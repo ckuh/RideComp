@@ -46,6 +46,9 @@ angular.module('App')
       directionsService.route(options, function(response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
           directionsDisplay.setDirections(response);
+          google.maps.event.addDomListener(window, 'resize', function() {
+            directionsDisplay.setDirections(response);
+          });
         } else {
           window.alert('Directions request failed due to ' + status);
         }
