@@ -27,7 +27,7 @@ angular.module('App')
     };
     uiGmapIsReady.promise().then(function() {
       var directionsService = new google.maps.DirectionsService;
-      var directionsDisplay = new google.maps.DirectionsRenderer;
+      var directionsDisplay = new google.maps.DirectionsRenderer();
       var displayedMap = vm.control.getGMap();
       directionsDisplay.setMap(displayedMap);
       var options = {
@@ -73,7 +73,9 @@ angular.module('App')
         },
         uber: {
           series: {
-            data: [[null,null]],
+            data: [
+              [null, null]
+            ],
             name: 'uber',
             color: '#161629'
           }
