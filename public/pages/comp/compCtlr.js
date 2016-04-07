@@ -64,13 +64,19 @@ angular.module('App')
                   var rideType = [];
                   var price = {
                     uberPrice: [],
-                    lyftPrice: []
+                    lyftPrice: [],
+                    lyftLinePrice: []
                   }
 
                   angular.forEach(data.cost_estimates, function(value) {
                     value.estimate = '$' + (value.estimated_cost_cents_min / 100) + '-' + (value.estimated_cost_cents_max / 100);
                     rideType.push(value.display_name);
-                    price.lyftPrice.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
+                    if (value.ride_type === 'lyft_line') {
+                      price.lyftLinePrice.push([(value.estimated_cost_cents_min / 100), null]);
+                      price.lyftPrice.push([null, null]);
+                    } else {
+                      price.lyftPrice.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
+                    }
                   });
 
                   angular.forEach(price.lyftPrice, function(value) {
@@ -134,6 +140,10 @@ angular.module('App')
           text: 'uber.com/lyft.com'
         },
         series: [{
+          name: 'lyft',
+          data: price.lyftLinePrice,
+          color: 'rgba(0,0,0,0)'
+        }, {
           name: 'lyft',
           data: price.lyftPrice,
           color: '#FF00BF'
