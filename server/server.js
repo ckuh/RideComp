@@ -3,9 +3,7 @@ var bodyParser = require('body-parser');
 var routeUber = require('./routes/routeUber.js');
 var routeLyft = require('./routes/routeLyft.js');
 
-var http = require('http');
 var app = express();
-var server = http.createServer(app);
 
 module.exports.app = app;
 app.use(bodyParser.json());
