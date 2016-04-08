@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
 
 app.use('/api', routeUber);
 app.use('/api', routeLyft);
+app.use('/config', express.static('./server/config'));
 app.use(express.static('./public'));
 
 server.listen(PORT, function() {
