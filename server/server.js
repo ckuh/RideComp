@@ -7,8 +7,7 @@ var http = require('http');
 var app = express();
 var server = http.createServer(app);
 
-var PORT = process.env.PORT || 3000;
-
+module.exports.app = app;
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
@@ -18,11 +17,17 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.set('port', process.env.PORT || 3000);
+
 app.use('/api', routeUber);
 app.use('/api', routeLyft);
 app.use('/config', express.static('./server/config'));
 app.use(express.static('./public'));
 
-server.listen(PORT, function() {
-  console.log('listening on port ', PORT);
-});
+if (module.parent) {
+  module.exports = app;
+} else {
+  app.listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+  });
+}
