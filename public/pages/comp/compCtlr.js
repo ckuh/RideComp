@@ -1,6 +1,7 @@
 angular.module('App')
   .controller('CompController', function($location, $scope, $state, $localStorage, $interval, $timeout, compFactory, uiGmapIsReady, highchartsNG) {
     var vm = this;
+    vm.taxiPrice = {};
     vm.uberPrice = {};
     vm.lyftPrice = [];
     vm.lyftToken = {};
@@ -126,11 +127,13 @@ angular.module('App')
                     }
                   });
 
-
                   vm.lyftPrice = data.cost_estimates;
                   // console.log('getLyftPrice: ', vm.lyftPrice);
 
-                  vm.setGraph();
+                  compFactory.getTaxiPrice()
+                    .then(function(data) {
+                      vm.setGraph();
+                    })
                 });
             });
         });
@@ -157,6 +160,9 @@ angular.module('App')
                 enabled: true,
                 formatter: function() {
                   return '$' + this.y;
+                },
+                style: {
+                  fontWeight: 'bold'
                 }
               }
             }

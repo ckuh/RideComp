@@ -3,7 +3,8 @@ angular.module('compFactory', [])
     var service = {
       getLyftPrice: getLyftPrice,
       getLyftToken: getLyftToken,
-      getUberPrice: getUberPrice
+      getUberPrice: getUberPrice,
+      getTaxiPrice: getTaxiPrice
     }
     return service;
     function getLyftPrice(token) {
@@ -74,4 +75,33 @@ angular.module('compFactory', [])
       }
     }
 
+    function getTaxiPrice() {
+      var paths = {
+        entityHandle: '',
+        origin: {
+          lat: $localStorage.user.curLat + ',',
+          lng: $localStorage.user.curLng
+        },
+        dest: {
+          lat: $localStorage.user.endLat + ',',
+          lng: $localStorage.user.endLng
+        }
+      }
+      var req = {
+        method: 'GET',
+        url: 'https://api.taxifarefinder.com/fare?key='+taxiKey+'&origin='+paths.origin.lat+paths.origin.lng+'&destination='+paths.dest.lat+paths.dest.lng
+      }
+      return $http(req)
+        .then(getTaxiPriceComplete)
+        .catch(getTaxiPriceFailed);
+
+      function getTaxiPriceComplete(response) {
+        console.log(response);
+        return response;
+      }
+
+      function getTaxiPriceFailed(error) {
+        console.error('XHR Failed for getTaxiPrice.' + error);
+      }
+    }
   })

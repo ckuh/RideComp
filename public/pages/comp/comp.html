@@ -11,11 +11,11 @@
     <span us-spinner spinner-theme='bigBlue'></span>
   </div>
 
-  <div class=' topBotPad' ng-if='compController.dataLoaded'>
+  <div class='topBotPad' ng-if='compController.dataLoaded'>
     <ui-gmap-google-map control='compController.control' center='compController.map.center' zoom='compController.map.zoom' options='compController.options'></ui-gmap-google-map>
   </div>
 
-  <div class=' topBotPad' ng-if='compController.dataLoaded'>
+  <div class='topBotPad' ng-if='compController.dataLoaded'>
     <div class='selectGraph' layout-padding>
       <md-button md-no-ink class='graphButton' ng-click='compController.lyftUberX()'>Single</md-button>
       <md-button md-no-ink class='graphButton' ng-click='compController.allGraph()'>All</md-button>
