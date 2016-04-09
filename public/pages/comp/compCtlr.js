@@ -26,35 +26,6 @@ angular.module('App')
       streetViewControl: false,
       zoomControl: false
     };
-    uiGmapIsReady.promise().then(function() {
-      var directionsService = new google.maps.DirectionsService;
-      var directionsDisplay = new google.maps.DirectionsRenderer();
-      var displayedMap = vm.control.getGMap();
-      directionsDisplay.setMap(displayedMap);
-      var options = {
-        origin: {
-          lat: $localStorage.user.curLat,
-          lng: $localStorage.user.curLng
-        },
-        destination: {
-          lat: $localStorage.user.endLat,
-          lng: $localStorage.user.endLng
-        },
-        travelMode: google.maps.TravelMode.DRIVING,
-        avoidTolls: true
-      }
-
-      directionsService.route(options, function(response, status) {
-        if (status === google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(response);
-          google.maps.event.addDomListener(window, 'resize', function() {
-            directionsDisplay.setDirections(response);
-          });
-        } else {
-          window.alert('Directions request failed due to ' + status);
-        }
-      });
-    });
 
     vm.init = function() {
       vm.chartOptionsStorage.all = {
@@ -147,10 +118,10 @@ angular.module('App')
                   compFactory.getTaxiPrice()
                     .then(function(data) {
                       // console.log('getTaxiPrice: ', data);
-                      var smallNum = (data.total_fare-data.tip_amount).toFixed(2);
+                      var smallNum = (data.total_fare - data.tip_amount).toFixed(2);
 
-                      vm.chartOptionsStorage.all.price.taxiPrice.push([parseFloat(smallNum),data.total_fare]);
-                      vm.chartOptionsStorage.small.taxi.series.data.push([parseFloat(smallNum),data.total_fare])
+                      vm.chartOptionsStorage.all.price.taxiPrice.push([parseFloat(smallNum), data.total_fare]);
+                      vm.chartOptionsStorage.small.taxi.series.data.push([parseFloat(smallNum), data.total_fare])
                       vm.setGraph();
                     })
                 });
@@ -229,8 +200,41 @@ angular.module('App')
         }
       };
       vm.chartOptionsStorage.all.series = vm.chartOptions.series;
+      vm.setMap();
+    }
+
+    vm.setMap = function() {
       vm.dataLoaded = true;
       vm.showSpinner = false;
+      uiGmapIsReady.promise().then(function() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        var displayedMap = vm.control.getGMap();
+        directionsDisplay.setMap(displayedMap);
+        var options = {
+          origin: {
+            lat: $localStorage.user.curLat,
+            lng: $localStorage.user.curLng
+          },
+          destination: {
+            lat: $localStorage.user.endLat,
+            lng: $localStorage.user.endLng
+          },
+          travelMode: google.maps.TravelMode.DRIVING,
+          avoidTolls: true
+        }
+
+        directionsService.route(options, function(response, status) {
+          if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            google.maps.event.addDomListener(window, 'resize', function() {
+              directionsDisplay.setDirections(response);
+            });
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      });
     }
 
     vm.home = function() {
@@ -239,7 +243,7 @@ angular.module('App')
 
     vm.lyftUberX = function() {
       vm.chartOptions.xAxis.categories = vm.chartOptionsStorage.small.categories;
-      vm.chartOptions.series = [vm.chartOptionsStorage.small.taxi.series,vm.chartOptionsStorage.small.lyft.series, vm.chartOptionsStorage.small.uber.series];
+      vm.chartOptions.series = [vm.chartOptionsStorage.small.taxi.series, vm.chartOptionsStorage.small.lyft.series, vm.chartOptionsStorage.small.uber.series];
     }
 
     vm.allGraph = function() {

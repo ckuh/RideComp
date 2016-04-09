@@ -1,4 +1,4 @@
-var taxiKey = process.env.TTFKEY || '<YOUR KEY HERE>';
+var taxiKey = process.env.TTFKEY || 'xucRe5heyeVa';
 
 module.exports = {
   taxiKey: taxiKey
