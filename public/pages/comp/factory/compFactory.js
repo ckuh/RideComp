@@ -87,21 +87,25 @@ angular.module('compFactory', [])
           lng: $localStorage.user.endLng
         }
       }
+      var taxiUrl = {
+        url: paths.origin.lat+paths.origin.lng+'&destination='+paths.dest.lat+paths.dest.lng
+      }
+
       var req = {
-        method: 'GET',
-        url: 'https://api.taxifarefinder.com/fare?key='+taxiKey+'&origin='+paths.origin.lat+paths.origin.lng+'&destination='+paths.dest.lat+paths.dest.lng
+        method: 'POST',
+        url: '/api/taxiPrice',
+        data: taxiUrl
       }
       return $http(req)
         .then(getTaxiPriceComplete)
         .catch(getTaxiPriceFailed);
 
       function getTaxiPriceComplete(response) {
-        console.log(response);
-        return response;
+        return response.data;
       }
 
       function getTaxiPriceFailed(error) {
-        console.error('XHR Failed for getTaxiPrice.' + error);
+        console.error('XHR Failed for getTaxiPrice: ' + error[0]);
       }
     }
   })
