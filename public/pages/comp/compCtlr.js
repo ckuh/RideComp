@@ -16,7 +16,8 @@ angular.module('App')
         longitude: ($localStorage.user.curLng + $localStorage.user.endLng) / 2
       },
       zoom: 13,
-      refresh: true
+      refresh: true,
+      resetMap: {}
     };
     vm.options = {
       draggable: false,
@@ -102,7 +103,7 @@ angular.module('App')
                   })
 
                   angular.forEach(vm.uberPrice, function(value) {
-                    if (value.display_name !== 'CHOPPER' && value.display_name !== 'uberT' && value.display_name !== 'Yellow WAV') {
+                    if (value.display_name !== 'CHOPPER' && value.display_name !== 'uberT' && value.display_name !== 'Yellow WAV' && value.display_name !== 'WAV') {
                       vm.chartOptionsStorage.all.rideType.push(value.display_name);
                       vm.chartOptionsStorage.all.price.uberPrice.push([value.low_estimate, value.high_estimate]);
                     }
@@ -171,7 +172,7 @@ angular.module('App')
         },
         credits: {
           enabled: true,
-          text: 'uber.com/lyft.com'
+          text: 'uber.com/lyft.com/taxifarefinder.com'
         },
         series: [{
           name: 'taxi',
@@ -230,6 +231,9 @@ angular.module('App')
             google.maps.event.addDomListener(window, 'resize', function() {
               directionsDisplay.setDirections(response);
             });
+            google.maps.event.addListener(vm.control.getGMap(), 'resize', function() {
+              directionsDisplay.setDirections(response);
+            });
           } else {
             window.alert('Directions request failed due to ' + status);
           }
@@ -239,6 +243,10 @@ angular.module('App')
 
     vm.home = function() {
       $state.go('home');
+    }
+
+    vm.resetMap = function() {
+      google.maps.event.trigger(vm.control.getGMap(), "resize");
     }
 
     vm.lyftUberX = function() {

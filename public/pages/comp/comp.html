@@ -1,18 +1,25 @@
 <div class='controller' ng-controller='CompController as compController'>
 
-  <div class='home' layout-padding ng-if='compController.dataLoaded'>
-    <md-button class='md-fab md-primary md-mini' ng-click="compController.home()">
-      <i class="material-icons">settings_backup_restore</i>
-      <md-tooltip md-direction='right'>Get new estimate</md-tooltip>
-    </md-button>
-  </div>
-
   <div class='vertCenter' ng-show='compController.showSpinner'>
     <span us-spinner spinner-theme='bigBlue'></span>
   </div>
 
   <div class='topBotPad' ng-if='compController.dataLoaded'>
     <ui-gmap-google-map control='compController.control' center='compController.map.center' zoom='compController.map.zoom' options='compController.options'></ui-gmap-google-map>
+
+    <div class='home' layout-padding ng-if='compController.dataLoaded'>
+      <md-button class='md-fab md-primary md-mini' ng-click="compController.home()">
+        <i class="material-icons">undo</i>
+        <md-tooltip md-direction='right'>Get new estimate</md-tooltip>
+      </md-button>
+    </div>
+
+    <div class='resetMap' layout-padding ng-if='compController.dataLoaded'>
+      <md-button class='md-fab md-primary md-mini' ng-click="compController.resetMap()">
+        <i class="material-icons">settings_backup_restore</i>
+        <md-tooltip md-direction='left' md-autohide='true'>Reset Map</md-tooltip>
+      </md-button>
+    </div>
   </div>
 
   <div class='topBotPad' ng-if='compController.dataLoaded'>
