@@ -5,7 +5,7 @@ angular.module('App')
     vm.spinner = false;
     $localStorage.user = {};
     $state.get('comp').authenticate = true;
-    
+
     vm.saveUserLoc = function() {
       if (vm.user.curLoc.geometry) {
         $localStorage.user.curLat = vm.user.curLoc.geometry.location.lat();
@@ -38,10 +38,10 @@ angular.module('App')
         .then(function(data) {
           vm.autoLat = data.coords.latitude;
           vm.autoLng = data.coords.longitude;
+          vm.spinner = false;
 
           homeFactory.getCurLocString(data.coords.latitude, data.coords.longitude)
             .then(function(data) {
-              vm.spinner = false;
               vm.user.curLoc = data[0].formatted_address;
             })
         });

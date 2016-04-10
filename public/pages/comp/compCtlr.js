@@ -117,7 +117,7 @@ angular.module('App')
 
                   compFactory.getTaxiPrice()
                     .then(function(data) {
-                      // console.log('getTaxiPrice: ', data);
+                      // console.log('getTaxiPrice: ', [data]);
                       var smallNum = (data.total_fare - data.tip_amount).toFixed(2);
 
                       vm.chartOptionsStorage.all.price.taxiPrice.push([parseFloat(smallNum), data.total_fare]);
