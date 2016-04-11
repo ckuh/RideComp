@@ -138,7 +138,7 @@ angular.module('App')
           },
           chart: {
             type: 'columnrange',
-            inverted: true
+            inverted: true,
           },
           tooltip: {
             formatter: function() {
@@ -156,19 +156,19 @@ angular.module('App')
                   fontWeight: 'bold'
                 }
               }
-            }
+            },
           }
         },
         xAxis: {
           categories: vm.chartOptionsStorage.all.rideType,
-          title: {
-            text: 'Ride Type'
-          }
+          tickColor: 'rgba(0,0,0,0)'
         },
         yAxis: {
           title: {
             text: 'Price ($)'
-          }
+          },
+          gridLineColor: 'rgba(0,0,0,0)',
+          visible: false
         },
         credits: {
           enabled: true,
@@ -201,6 +201,7 @@ angular.module('App')
         }
       };
       vm.chartOptionsStorage.all.series = vm.chartOptions.series;
+      vm.lyftUberX();
       vm.setMap();
     }
 

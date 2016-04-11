@@ -38,10 +38,10 @@ angular.module('App')
         .then(function(data) {
           vm.autoLat = data.coords.latitude;
           vm.autoLng = data.coords.longitude;
-          vm.spinner = false;
 
           homeFactory.getCurLocString(data.coords.latitude, data.coords.longitude)
             .then(function(data) {
+              vm.spinner = false;
               vm.user.curLoc = data[0].formatted_address;
             })
         });
