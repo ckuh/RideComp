@@ -49,7 +49,7 @@
   width: 25%;
 }
 .btn1:not([disabled]):hover {
-  background-color: rgb(255, 255, 255, .10);
+  background-color: white;
   color: black;
 }
 .btn1[disabled] {
