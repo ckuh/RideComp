@@ -17,6 +17,12 @@
   transform: translate(-50%, -50%);
 }*/
 
+#home {
+  background-image: url('../img/sunset.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 .userForm {
   background-color: #EE7F7F;
 }
