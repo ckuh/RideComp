@@ -66,6 +66,25 @@ angular.module('App', [
       speed: 0.7,
       trail: 100
     });
+
+    $mdThemingProvider.definePalette('white', {
+      '50': 'FFFFFF',
+      '100': 'FFFFFF',
+      '200': 'FFFFFF',
+      '300': 'FFFFFF',
+      '400': 'FFFFFF',
+      '500': 'FFFFFF',
+      '600': 'FFFFFF',
+      '700': 'FFFFFF',
+      '800': 'FFFFFF',
+      '900': 'FFFFFF',
+      'A100': 'FFFFFF',
+      'A200': 'FFFFFF',
+      'A400': 'FFFFFF',
+      'A700': 'FFFFFF'
+    });
+    $mdThemingProvider.theme('altTheme')
+      .primaryPalette('white')
   })
   .run(function($rootScope, $state, $localStorage) {
     $rootScope.$on('$stateChangeStart', function(e, to) {

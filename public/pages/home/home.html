@@ -1,13 +1,13 @@
 <div class='controller' id='home' ng-controller='HomeController as homeController' ng-cloak>
 
   <div class='vertCenter userForm' layout-padding>
-    <h2 class='md-display-2 title'>DR.FARE</h2>
+    <h2 class='title'>DR.FARE</h2>
 
     <form name='saveUserLoc' class='md-primary' ng-submit='saveUserLoc.$valid && homeController.saveUserLoc()'>
 
       <div class='userFormInput'>
-        <div class='getLocSpinner' ng-show='homeController.spinner'>
-          <span us-spinner spinner-theme='smallBlue'></span>
+        <div md-theme='altTheme' class='getLocSpinner' ng-show='homeController.spinner'>
+          <md-progress-circular md-mode='indeterminate' class='md-hue-1' md-diameter='30px'></md-progress-circular>
         </div>
         <md-input-container class='md-block' md-no-float>
           <input class='userInput' name='curLoc' type='text' ng-model='homeController.user.curLoc' required g-places-autocomplete force-selection='true' autocomplete='off' placeholder='YOUR LOCATION'>
@@ -15,16 +15,22 @@
             <div ng-message='required'>This is required!</div>
           </div>
         </md-input-container>
+        <div class='curLoc' layout-padding ng-click='homeController.getCurLoc()'>
+          <i class='material-icons getCurLocIcon'>location_on</i>
+        </div>
       </div>
 
       <div class='userFormInput'>
         <md-input-container class='md-block' md-no-float>
           <input class='userInput' name='endLoc' type='text' ng-model='homeController.user.endLoc' required g-places-autocomplete force-selection='true' autocomplete='off' placeholder='YOUR DESTINATION'>
 
-          <div ng-messages="saveUserLoc.endLoc.$error" ng-show="saveUserLoc.endLoc.$touched">
-            <div ng-message="required">This is required!</div>
+          <div ng-messages='saveUserLoc.endLoc.$error' ng-show='saveUserLoc.endLoc.$touched'>
+            <div ng-message='required'>This is required!</div>
           </div>
         </md-input-container>
+        <div class='swap' layout-padding ng-click='homeController.swap()'>
+          <i class='material-icons swapIcon'>swap_vert</i>
+        </div>
       </div>
 
       <section layout='row' layout-align='center'>
@@ -33,18 +39,6 @@
       </section>
 
     </form>
-
-    <!-- <div class='curLoc' layout-padding>
-      <md-button class='md-fab md-primary md-mini' ng-click='homeController.getCurLoc()'>
-        <i class='material-icons'>location_on</i>
-      </md-button>
-    </div>
-
-    <div class='swap' layout-padding>
-      <md-button class='md-fab md-primary md-mini' ng-click='homeController.swap()'>
-        <i class='material-icons'>swap_vert</i>
-      </md-button>
-    </div> -->
 
   </div>
 </div>

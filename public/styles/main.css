@@ -1,7 +1,6 @@
 .controller {
   height: 100%;
 }
-
 .vertCenter {
   position: absolute;
   top: 50%;
@@ -10,4 +9,13 @@
   width: 50% !important;
   padding-top: 20px !important;
   padding-bottom: 20px !important;
+}
+@font-face {
+  font-family: AzoSans;
+  src: url('../font/AzoSansRegular.otf') format('opentype');
+}
+@font-face {
+  font-family: AzoSans;
+  font-weight: bold;
+  src: url('../font/AzoSansBold.otf') format('opentype');
 }

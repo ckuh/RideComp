@@ -1,42 +1,59 @@
-/*.swap {
+.swap {
   position: absolute;
-  top: 65%;
-  right: 0;
-  transform: translate(-60%, -50%);
+  top: -5%;
+  right: -8px;
+}
+.swap:focus {
+  outline: none;
+  border: 0;
+}
+.swapIcon {
+  color: #01579B;
+  font-size: 20px !important;
 }
 .curLoc {
   position: absolute;
-  top: 40%;
-  right: 0;
-  transform: translate(-60%, -50%);
-}*/
+  top: -5%;
+  right: -8px;
+}
+.curLoc:focus {
+  outline: none;
+  border: 0;
+}
+.getCurLocIcon {
+  color: #01579B;
+  font-size: 20px !important;
+}
 .getLocSpinner {
   position: absolute;
-  top: 35%;
-  left: 13px;
+  top: 10%;
+  left: -37px;
 }
-
 #home {
-  background-image: url('../img/sunset.jpg');
+  background-image: url('../img/bg.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 .userForm {
-  background-color: #EE7F7F;
-  /*width: 350px !important;*/
+  background-color: rgb(238, 127, 127);
+  width: 50% !important;
+  height: 556px !important;
 }
 .userFormInput {
   position: relative;
   width: 85%;
   margin-left: auto;
   margin-right: auto;
+  font-weight: bold;
 }
 .userInput {
   background-color: white !important;
-  padding: 30px 30px 30px 30px !important;
+  padding: 22px 32px 21px 22px !important;
   border-bottom: 0 !important;
-  font-size: 18px;
+  font-size: 14px;
+  font-family: AzoSans !important;
+  letter-spacing: .7px;
 }
 .userLabel {
   padding: 30px !important;
@@ -45,40 +62,59 @@
   color: white;
   margin-top: 0;
   text-align: center;
+  font-size: 60px;
+  font-family: AzoSans !important;
+  font-weight: bold;
+  letter-spacing: 8.73px;
 }
 .submit:not([disabled]) {
+  letter-spacing: 1.8px;
+  font-family: AzoSans !important;
+  font-weight: bold;
   color: black;
   background-color: white;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 50px;
   font-size: 16px;
   width: 25%;
 }
 .submit:not([disabled]):hover {
+  letter-spacing: 1.8px;
+  font-family: AzoSans !important;
+  font-weight: bold;
   background-color: white;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 50px;
   color: black;
 }
 .submit[disabled] {
+  letter-spacing: 1.8px;
+  font-family: AzoSans !important;
+  font-weight: bold;
   width: 25%;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 50px;
   background-color: white;
 }
 .reset:not([disabled]) {
+  letter-spacing: 1.8px;
+  font-family: AzoSans !important;
+  font-weight: bold;
   color: white;
   background-color: rgb(255, 87, 34);
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 50px;
   font-size: 16px;
   width: 25%;
 }
 .reset:not([disabled]):hover {
+  font-family: AzoSans !important;
+  font-weight: bold;
   background-color: rgb(255, 87, 34);
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 50px;
   color: white;
 }
-.reset[disabled] {
-  width: 25%;
-  background-color: white;
-}
 .md-button .md-ripple-container {
-  border-radius: 15px 15px 15px 15px !important;
+  border-radius: 50px !important;
+}
+@media (min-width: 1000px) {
+  .userForm {
+    width: 486px !important;
+  }
 }
