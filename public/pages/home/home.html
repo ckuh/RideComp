@@ -6,6 +6,9 @@
     <form name='saveUserLoc' class='md-primary' ng-submit='saveUserLoc.$valid && homeController.saveUserLoc()'>
 
       <div class='userFormInput'>
+        <div class='getLocSpinner' ng-show='homeController.spinner'>
+          <span us-spinner spinner-theme='smallBlue'></span>
+        </div>
         <md-input-container class='md-block' md-no-float>
           <input class='userInput' name='curLoc' type='text' ng-model='homeController.user.curLoc' required g-places-autocomplete force-selection='true' autocomplete='off' placeholder='YOUR LOCATION'>
           <div ng-messages='saveUserLoc.curLoc.$error' ng-show='saveUserLoc.curLoc.$touched'>
@@ -41,10 +44,6 @@
       <md-button class='md-fab md-primary md-mini' ng-click='homeController.swap()'>
         <i class='material-icons'>swap_vert</i>
       </md-button>
-    </div>
-
-    <div class='getLocSpinner' ng-show='true'>
-      <span us-spinner spinner-theme='smallBlue' ng-show='true'></span>
     </div> -->
 
   </div>
