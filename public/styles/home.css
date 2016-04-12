@@ -1,18 +1,59 @@
-.swap {
+/*.swap {
   position: absolute;
-  top: 50%;
+  top: 65%;
   right: 0;
-  transform: translate(80%, -50%);
+  transform: translate(-60%, -50%);
 }
 .curLoc {
   position: absolute;
-  top: 15%;
+  top: 40%;
   right: 0;
-  transform: translate(80%, -50%);
+  transform: translate(-60%, -50%);
 }
 .getLocSpinner {
   position: absolute;
-  top: 15%;
-  left: 0;
-  transform: translate(-70%, -50%);
+  top: 40%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}*/
+
+.userForm {
+  background-color: #EE7F7F;
+}
+.userFormInput {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.userInput {
+  background-color: white !important;
+  padding: 30px 30px 30px 30px!important;
+  border-bottom: 0 !important;
+  font-size: 18px;
+}
+.title {
+  color: white;
+  margin-top: 0;
+  text-align: center;
+}
+.buttonContainer {
+  width: 212px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn1:not([disabled]) {
+  color: black;
+  background-color: white;
+  border-radius: 15px 15px 15px 15px;
+  font-size: 16px;
+  width: 25%;
+}
+.btn1:not([disabled]):hover {
+  background-color: rgb(255, 255, 255, .10);
+  color: black;
+}
+.btn1[disabled] {
+  width: 25%;
+  border-radius: 15px 15px 15px 15px;
+  background-color: white;
 }
