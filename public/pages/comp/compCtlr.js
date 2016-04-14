@@ -80,7 +80,6 @@ angular.module('App')
           compFactory.getLyftToken()
             .then(function(data) {
               vm.lyftToken = data;
-
               compFactory.getLyftPrice(vm.lyftToken)
                 .then(function(data) {
                   angular.forEach(data.cost_estimates, function(value) {
@@ -88,7 +87,7 @@ angular.module('App')
                     vm.chartOptionsStorage.all.rideType.push(value.display_name);
                     if (value.ride_type === 'lyft_line') {
                       vm.chartOptionsStorage.all.price.lyftLinePrice.push([(value.estimated_cost_cents_min / 100), null]);
-                      vm.chartOptionsStorage.all.price.lyftPrice.push([null, null]);
+                      vm.chartOptionsStorage.all.price.lyftPrice.unshift([null, null]);
                     } else {
                       vm.chartOptionsStorage.all.price.lyftPrice.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
                     }
