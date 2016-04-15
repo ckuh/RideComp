@@ -12,10 +12,9 @@
 }
 @font-face {
   font-family: AzoSans;
-  src: url('../font/AzoSansRegular.otf') format('opentype');
+  src: url('../font/Asimov.otf') format('opentype');
 }
 @font-face {
   font-family: AzoSans;
-  font-weight: bold;
-  src: url('../font/AzoSansBold.otf') format('opentype');
+  src: url('../font/Asimov.otf') format('opentype');
 }

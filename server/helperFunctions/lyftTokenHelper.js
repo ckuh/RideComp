@@ -10,7 +10,7 @@ var makeToken = function(callback) {
       callback(token);
     })
     .catch(function logError(error) {
-      console.log('Access Token error', error.message);
+      console.log('Access Token error', error);
       callback(error.message);
     });
 }
