@@ -1,5 +1,5 @@
 angular.module('App')
-  .controller('MapController', function($location, $scope, $state, $localStorage, $interval, $timeout, compFactory, uiGmapIsReady, highchartsNG) {
+  .controller('MapController', function($scope, $localStorage, uiGmapIsReady) {
     var vm = this;
     vm.control = {};
     vm.map = {

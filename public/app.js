@@ -12,6 +12,7 @@ angular.module('App', [
     'uiGmapgoogle-maps',
     'homeFactory',
     'compFactory',
+    'graphFactory',
     'ngSanitize',
     'highcharts-ng'
   ])

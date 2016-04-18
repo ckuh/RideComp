@@ -1,10 +1,12 @@
 angular.module('compFactory', [])
   .factory('compFactory', function($state, $localStorage, $http) {
+    var loadSpinner = {}
     var service = {
       getLyftPrice: getLyftPrice,
       getLyftToken: getLyftToken,
       getUberPrice: getUberPrice,
-      getTaxiPrice: getTaxiPrice
+      getTaxiPrice: getTaxiPrice,
+      loadSpinner: loadSpinner
     }
     return service;
     function getLyftPrice(token) {

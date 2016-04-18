@@ -1,35 +1,43 @@
 <div class='controller' ng-controller='CompController as compController'>
 
-  <div class='vertCenter' ng-show='compController.showSpinner'>
+  <div class='vertCenter' ng-show='compController.loadSpinner.showSpinner'>
     <span us-spinner spinner-theme='bigBlue'></span>
   </div>
 
-  <div class='topBotPad' ng-if='compController.dataLoaded'>
-    <div class='controller' ng-controller='MapController as mapController'>
-      <ui-gmap-google-map control='mapController.control' center='mapController.map.center' zoom='mapController.map.zoom' options='mapController.options'></ui-gmap-google-map>
+  <div ng-if='compController.rideDataLoaded'>
+    <div class='controller' ng-controller='GraphController as graphController'>
 
-      <div class='home' layout-padding ng-if='compController.dataLoaded'>
-        <md-button class='md-fab md-primary md-mini' ng-click="compController.home()">
-          <i class="material-icons">undo</i>
-          <md-tooltip md-direction='right'>Get new estimate</md-tooltip>
-        </md-button>
+      <div class='topBotPad' ng-if='graphController.graphDataLoaded'>
+        <div class='controller' ng-controller='MapController as mapController'>
+
+          <ui-gmap-google-map control='mapController.control' center='mapController.map.center' zoom='mapController.map.zoom' options='mapController.options'></ui-gmap-google-map>
+
+          <div class='home' layout-padding ng-if='graphController.graphDataLoaded'>
+            <md-button class='md-fab md-primary md-mini' ng-click="compController.home()">
+              <i class="material-icons">undo</i>
+              <md-tooltip md-direction='right'>Get new estimate</md-tooltip>
+            </md-button>
+          </div>
+
+          <div class='resetMap' layout-padding ng-if='graphController.graphDataLoaded'>
+            <md-button class='md-fab md-primary md-mini' ng-click="mapController.resetMap()">
+              <i class="material-icons">settings_backup_restore</i>
+              <md-tooltip md-direction='left' md-autohide='true'>Reset Map</md-tooltip>
+            </md-button>
+          </div>
+
+        </div>
       </div>
 
-      <div class='resetMap' layout-padding ng-if='compController.dataLoaded'>
-        <md-button class='md-fab md-primary md-mini' ng-click="mapController.resetMap()">
-          <i class="material-icons">settings_backup_restore</i>
-          <md-tooltip md-direction='left' md-autohide='true'>Reset Map</md-tooltip>
-        </md-button>
+      <div class='topBotPad' ng-if='graphController.graphDataLoaded'>
+        <div class='selectGraph' layout-padding>
+          <md-button md-no-ink class='graphButton' ng-click='graphController.lyftUberX()'>Single</md-button>
+          <md-button md-no-ink class='graphButton' ng-click='graphController.allGraph()'>All</md-button>
+        </div>
+        <highchart config='graphController.chartOptions'></highchart>
       </div>
-    </div>
-  </div>
 
-  <div class='topBotPad' ng-if='compController.dataLoaded'>
-    <div class='selectGraph' layout-padding>
-      <md-button md-no-ink class='graphButton' ng-click='compController.lyftUberX()'>Single</md-button>
-      <md-button md-no-ink class='graphButton' ng-click='compController.allGraph()'>All</md-button>
     </div>
-    <highchart config='compController.chartOptions'></highchart>
   </div>
 
 </div>
