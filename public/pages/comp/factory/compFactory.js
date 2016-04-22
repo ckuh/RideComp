@@ -1,17 +1,25 @@
 angular.module('compFactory', [])
   .factory('compFactory', function($state, $localStorage, $http) {
-    var loadSpinner = {}
+    var loadSpinner = {};
+    var allRideData = {};
     var service = {
       getLyftPrice: getLyftPrice,
       getLyftToken: getLyftToken,
       getUberPrice: getUberPrice,
       getTaxiPrice: getTaxiPrice,
-      loadSpinner: loadSpinner
+      loadSpinner: loadSpinner,
+      setAllRideData: setAllRideData,
+      allRideData: allRideData,
     }
     return service;
+
+    function setAllRideData(rideData) {
+      this.allRideData = rideData;
+    }
+
     function getLyftPrice(token) {
       var auth = token.token_type + ' ' + token.access_token;
-      var url = 'https://api.lyft.com/v1/cost?start_lat='+$localStorage.user.curLat+'&start_lng='+$localStorage.user.curLng+'&end_lat='+$localStorage.user.endLat+'&end_lng='+$localStorage.user.endLng;
+      var url = 'https://api.lyft.com/v1/cost?start_lat=' + $localStorage.user.curLat + '&start_lng=' + $localStorage.user.curLng + '&end_lat=' + $localStorage.user.endLat + '&end_lng=' + $localStorage.user.endLng;
       var req = {
         method: 'GET',
         url: url,
@@ -90,7 +98,7 @@ angular.module('compFactory', [])
         }
       }
       var taxiUrl = {
-        url: paths.origin.lat+paths.origin.lng+'&destination='+paths.dest.lat+paths.dest.lng
+        url: paths.origin.lat + paths.origin.lng + '&destination=' + paths.dest.lat + paths.dest.lng
       }
 
       var req = {

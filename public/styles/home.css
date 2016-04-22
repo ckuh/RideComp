@@ -29,6 +29,10 @@
   top: 10%;
   left: -37px;
 }
+.buttonHolder{
+  position: relative;
+  bottom: -84px;
+}
 #home {
   background-image: url('../img/bg.jpeg');
   background-repeat: no-repeat;
@@ -38,14 +42,25 @@
 .userForm {
   background-color: rgb(238, 127, 127);
   width: 50% !important;
-  height: 556px !important;
+  height: 520px !important;
 }
-.userFormInput {
+.userCurInput {
   position: relative;
+  bottom: -34px;
   width: 85%;
   margin-left: auto;
   margin-right: auto;
-  font-weight: bold;
+}
+.userToInput {
+  position: relative;
+  bottom: -38px;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.inputContainer {
+  position: relative;
+  bottom: -10px;
 }
 .userInput {
   background-color: white !important;
@@ -59,6 +74,8 @@
   padding: 30px !important;
 }
 .title {
+  position: relative;
+  bottom: -35px;
   color: white;
   margin-top: 0;
   text-align: center;

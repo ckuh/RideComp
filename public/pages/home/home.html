@@ -5,38 +5,42 @@
 
     <form name='saveUserLoc' class='md-primary' ng-submit='saveUserLoc.$valid && homeController.saveUserLoc()'>
 
-      <div class='userFormInput'>
-        <div md-theme='altTheme' class='getLocSpinner' ng-show='homeController.spinner'>
-          <md-progress-circular md-mode='indeterminate' class='md-hue-1' md-diameter='30px'></md-progress-circular>
-        </div>
-        <md-input-container class='md-block' md-no-float>
-          <input class='userInput' name='curLoc' type='text' ng-model='homeController.user.curLoc' required g-places-autocomplete force-selection='true' autocomplete='off' placeholder='YOUR LOCATION'>
-          <div ng-messages='saveUserLoc.curLoc.$error' ng-show='saveUserLoc.curLoc.$touched'>
-            <div ng-message='required'>This is required!</div>
+      <div class='inputContainer'>
+        <div class='userCurInput'>
+          <div md-theme='altTheme' class='getLocSpinner' ng-show='homeController.spinner'>
+            <md-progress-circular md-mode='indeterminate' class='md-hue-1' md-diameter='30px'></md-progress-circular>
           </div>
-        </md-input-container>
-        <div class='curLoc' layout-padding ng-click='homeController.getCurLoc()'>
-          <i class='material-icons getCurLocIcon'>location_on</i>
+          <md-input-container class='md-block' md-no-float>
+            <input class='userInput' name='curLoc' type='text' ng-model='homeController.user.curLoc' required g-places-autocomplete force-selection='true' autocomplete='off' placeholder='YOUR LOCATION'>
+            <div ng-messages='saveUserLoc.curLoc.$error' ng-show='saveUserLoc.curLoc.$touched'>
+              <div ng-message='required'>This is required!</div>
+            </div>
+          </md-input-container>
+          <div class='curLoc' layout-padding ng-click='homeController.getCurLoc()'>
+            <i class='material-icons getCurLocIcon'>location_on</i>
+          </div>
+        </div>
+
+        <div class='userToInput'>
+          <md-input-container class='md-block' md-no-float>
+            <input class='userInput' name='endLoc' type='text' ng-model='homeController.user.endLoc' required g-places-autocomplete force-selection='true' autocomplete='off' placeholder='YOUR DESTINATION'>
+
+            <div ng-messages='saveUserLoc.endLoc.$error' ng-show='saveUserLoc.endLoc.$touched'>
+              <div ng-message='required'>This is required!</div>
+            </div>
+          </md-input-container>
+          <div class='swap' layout-padding ng-click='homeController.swap()'>
+            <i class='material-icons swapIcon'>swap_vert</i>
+          </div>
         </div>
       </div>
 
-      <div class='userFormInput'>
-        <md-input-container class='md-block' md-no-float>
-          <input class='userInput' name='endLoc' type='text' ng-model='homeController.user.endLoc' required g-places-autocomplete force-selection='true' autocomplete='off' placeholder='YOUR DESTINATION'>
-
-          <div ng-messages='saveUserLoc.endLoc.$error' ng-show='saveUserLoc.endLoc.$touched'>
-            <div ng-message='required'>This is required!</div>
-          </div>
-        </md-input-container>
-        <div class='swap' layout-padding ng-click='homeController.swap()'>
-          <i class='material-icons swapIcon'>swap_vert</i>
-        </div>
+      <div class='buttonHolder'>
+        <section layout='row' layout-align='center'>
+          <md-button type='submit' class='submit' ng-disabled='saveUserLoc.$invalid'>SUBMIT</md-button>
+          <md-button class='reset' ng-click='homeController.reset()'>RESET</md-button>
+        </section>
       </div>
-
-      <section layout='row' layout-align='center'>
-        <md-button type='submit' class='submit' ng-disabled='saveUserLoc.$invalid'>SUBMIT</md-button>
-        <md-button class='reset' ng-click='homeController.reset()'>RESET</md-button>
-      </section>
 
     </form>
 

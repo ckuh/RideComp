@@ -35,6 +35,33 @@
           <md-button md-no-ink class='graphButton' ng-click='graphController.allGraph()'>All</md-button>
         </div>
         <highchart config='graphController.chartOptions'></highchart>
+
+        <!-- <div class='controller' ng-controller='PriceController as priceController'>
+
+          <div class='rideAvg' layout='row' layout-align='center center'>
+            <div class='rideAvg' layout='column' layout-align='center start'>
+              <h2>Ride Avg Cost</h2>
+
+              <div class='' layout='row' layout-align='center'>
+                <div class='rideAvg priceListLeft' layout='column' layout-align='start start'>
+                  <div class='' ng-repeat="ride in priceController.rideDisplay">
+                    {{ride.name}}:
+                    {{ride.avgCost}}
+                  </div>
+                </div>
+
+                <div class='rideAvg priceListRight' layout='column' layout-align='start end'>
+                  <div class='' ng-repeat="ride in priceController.rideDisplay">
+                    {{ride.name}}:
+                    {{ride.avgCost}}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div> -->
       </div>
 
     </div>

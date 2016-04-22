@@ -24,6 +24,20 @@
   z-index: 1;
   padding: 0;
 }
+.rideAvg {
+  height: 400px;
+}
+.rideAvg h2 {
+  width: 100%;
+  text-align: center;
+}
+.priceListLeft {
+  padding-right: 20px;
+}
+/*
+.priceListRight {
+  padding-left: 20px;
+}*/
 .graphButton {
   background-color: rgba(0, 0, 0, 0);
   padding: 0 !important;

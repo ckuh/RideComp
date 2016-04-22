@@ -33,6 +33,7 @@ angular.module('App')
                       vm.chartOptionsStorage.small.categories.push(value.display_name)
                       vm.chartOptionsStorage.small.lyft.series.data.push([(value.estimated_cost_cents_min / 100), (value.estimated_cost_cents_max / 100)])
                     }
+
                   });
 
                   angular.forEach(vm.chartOptionsStorage.all.price.lyftPrice, function(value) {
@@ -55,9 +56,11 @@ angular.module('App')
 
                   compFactory.getTaxiPrice()
                     .then(function(data) {
+                      vm.taxiPrice = [data];
                       // console.log('getTaxiPrice: ', [data]);
                       var smallNum = (data.total_fare - data.tip_amount).toFixed(2);
 
+                      compFactory.setAllRideData({lyft: vm.lyftPrice, uber: vm.uberPrice, taxi: vm.taxiPrice});
                       vm.chartOptionsStorage.all.price.taxiPrice.push([parseFloat(smallNum), data.total_fare]);
                       vm.chartOptionsStorage.small.taxi.series.data.push([parseFloat(smallNum), data.total_fare])
                       vm.rideDataLoaded = true;
