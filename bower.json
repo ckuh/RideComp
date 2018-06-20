@@ -31,5 +31,8 @@
     "highcharts": "^4.2.3",
     "angular-sanitize": "^1.5.3",
     "highcharts-ng": "^0.0.11"
+  },
+  "resolutions": {
+    "angular": "^1.5.3"
   }
 }
