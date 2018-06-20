@@ -9,5 +9,13 @@ module.exports = {
       })
     },
     post: function(req, res) {}
+  },
+  lyftPrice: {
+    get: (req, res) => {
+      models.lyftPrice.get((data) => {
+        res.status(200).send(data);
+      }, req.query)
+    },
+    post: function(req, res) {},
   }
 }

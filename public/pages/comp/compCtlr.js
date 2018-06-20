@@ -45,7 +45,8 @@ angular.module('App')
                       vm.chartOptionsStorage.all.rideType.push(value.display_name);
                       vm.chartOptionsStorage.all.price.uberPrice.push([value.low_estimate, value.high_estimate]);
                     }
-                    if (value.display_name === 'uberX') {
+
+                    if (value.display_name.toLowerCase() === 'uberx') {
                       vm.chartOptionsStorage.small.categories.push(value.display_name);
                       vm.chartOptionsStorage.small.uber.series.data.push([value.low_estimate, value.high_estimate]);
                     }

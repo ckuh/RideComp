@@ -19,19 +19,24 @@ angular.module('compFactory', [])
 
     function getLyftPrice(token) {
       var auth = token.token_type + ' ' + token.access_token;
-      var url = 'https://api.lyft.com/v1/cost?start_lat=' + $localStorage.user.curLat + '&start_lng=' + $localStorage.user.curLng + '&end_lat=' + $localStorage.user.endLat + '&end_lng=' + $localStorage.user.endLng;
+
       var req = {
         method: 'GET',
-        url: url,
-        headers: {
-          'Authorization': auth
+        url: '/api/lyftPrice',
+        params: {
+          start_latitude: $localStorage.user.curLat,
+          start_longitude: $localStorage.user.curLng,
+          end_latitude: $localStorage.user.endLat,
+          end_longitude: $localStorage.user.endLng
         }
       }
+
       return $http(req)
         .then(getLyftPriceComplete)
         .catch(getLyftPriceFailed);
 
       function getLyftPriceComplete(response) {
+        console.log(response)
         return response.data;
       }
 
